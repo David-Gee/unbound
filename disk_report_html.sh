@@ -9,7 +9,7 @@ exit 0
 
 
 sendmail(){
-sendEmail -o message-content-type=html -o message-file=$reportfile -f nagios@em.denachina.com -t $2 -s smtp.em.denachina.com -u $1 -xu nagios@em.denachina.com -xp Hwf23.#whgw
+/usr/local/bin/sendEmail -o message-content-type=html -o message-file=$reportfile -f nagios@em.denachina.com -t $2 -s smtp.em.denachina.com -u $1 -xu nagios@em.denachina.com -xp Hwf23.#whgw
 }
 
 project=$1
