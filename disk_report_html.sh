@@ -31,10 +31,9 @@ echo "<tr><th>Hostname</th><th> / </th><th>/data/</th></tr>"  >> $reportfile
 for host in $host_list
 do
 	echo "========  $host  ========"
-	lines=$(ssh $host "df -h"|grep -vE 'Filesystem|tmpfs|none'|awk '{print $5,$6}'|sed 's/%//g')
+	lines=$(ssh $host "df -h"|grep -vE 'Filesystem|tmpfs|none|文件系统'|grep '%'|awk '{print $(NF-1),$NF}'|sed 's/%//g')
 	line_num=$(echo "$lines"|wc -l)
 	new_line="<tr><td>$host</td>"
-	#awk '{print $5,$6}'|sed 's/%//g'
 	for usage in $(echo "$lines"|awk '{print $1}')
 	do
 		if [ $usage -gt 80 ];then
